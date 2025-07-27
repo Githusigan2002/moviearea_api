@@ -1,24 +1,16 @@
 import express from "express";
+import MovieRoute from "./routes/moviesRoutes.js";
+
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
+
 app.get("/", (req, res) => {
-  req.body("fgj");
+  res.json({ msg: "Hello!" });
 });
 
 //CRUD Fn of Movies
-// - R
-app.get("/movies", () => {});
-
-// - C
-app.post("/movies", () => {});
-
-// -U
-app.put("/movies/:id", () => {});
-
-// -D
-app.delete("/movies/:id", () => {});
-
+app.use("/", MovieRoute);
 
 app.listen(PORT, () => {
-  console.log(`App listening on port http://localhost/${PORT}`);
+  console.log(`App listening on port http://localhost:${PORT}`);
 });

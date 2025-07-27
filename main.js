@@ -5,8 +5,12 @@ import connectDB from "./lib/db.js";
 const app = express();
 const PORT = 5000;
 
+//Data understanding middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //Connect DB
-connectDB()
+connectDB();
 app.get("/", (req, res) => {
   res.json({ msg: "Hello!" });
 });

@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
 });
 
 //CRUD Fn of Movies
-app.use("/", MovieRoute);
+app.use("/movies", MovieRoute);
 
 app.listen(PORT, () => {
   console.log(`App listening on port http://localhost:${PORT}`);

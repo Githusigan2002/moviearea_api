@@ -51,21 +51,21 @@ export const MovieUpdate = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
-
-  // if (req.body.title !== null) {
-  //   res.movie.title = req.body.title;
-  // }
-  // if (req.body.desc !== null) {
-  //   res.movie.desc = req.body.desc;
-  // }
-
-  // try {
-  //   const updated_movie = await res.movie.save();
-  // } catch (error) {
-  //   return res.status(400).json({ message: error.message });
-  // }
 };
 
-export const MovieDelete = (req, res) => {
-  res.send("Delete a movie");
+export const MovieDelete = async (req, res) => {
+  const movieId = req.params.id;
+
+  try {
+    const deletedMovie = await Movie.findByIdAndDelete(movieId);
+
+    if (!deletedMovie) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
+
+    res.status(200).json({ message: "Movie deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
+
